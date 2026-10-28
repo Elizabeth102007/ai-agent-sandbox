@@ -1,0 +1,13 @@
+
+
+{
+  "dockerfile_lines": [],
+  "graphs": {
+    "invoice_agent": "./studio/agent.py:graph"
+  },
+  "env": "./studio/.env",
+  "python_version": "3.12",
+  "dependencies": [
+    "./studio"
+  ]
+}

@@ -1,0 +1,13 @@
+Harbor View Cleaning Services
+Invoice Date: 2026-10-12
+Due Date: 2026-11-11
+Currency: USD
+
+Description: Office cleaning
+Quantity: 4
+Unit Price: 30.00
+Amount: 120.00
+
+Subtotal: 120.00
+Tax: 12.00
+Total: 132.00

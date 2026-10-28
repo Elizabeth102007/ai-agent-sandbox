@@ -1,0 +1,14 @@
+Bright Office Equipment
+Invoice Number: BOE-450
+Invoice Date: 2026-10-14
+Due Date: 2026-11-13
+Currency: USD
+
+Description: Office desks
+Quantity: 2
+Unit Price: 25.25
+Amount: 50.50
+
+Subtotal: 50.50
+Tax: 5.00
+Total: 65.50

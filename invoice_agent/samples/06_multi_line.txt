@@ -1,0 +1,24 @@
+Maple Technology Supplies
+Invoice Number: MTS-901
+Invoice Date: 2026-10-10
+Due Date: 2026-11-09
+Currency: USD
+
+Description: Keyboard
+Quantity: 2
+Unit Price: 25.00
+Amount: 50.00
+
+Description: Mouse
+Quantity: 3
+Unit Price: 15.00
+Amount: 45.00
+
+Description: Monitor
+Quantity: 1
+Unit Price: 200.00
+Amount: 200.00
+
+Subtotal: 295.00
+Tax: 29.50
+Total: 324.50

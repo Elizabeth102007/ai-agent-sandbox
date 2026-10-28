@@ -1,0 +1,12 @@
+{
+  "graphs": {
+    "toy_agent": "./toy_agent.py:graph",
+    "interrupts": "./interrupts.py:graph"
+  },
+  "env": "./.env",
+  "python_version": "3.12",
+  "dependencies": [
+    "."
+  ]
+}
+

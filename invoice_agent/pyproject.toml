@@ -1,0 +1,26 @@
+
+[project]
+name = "invoice-agent"
+version = "0.1.0"
+description = "Invoice extraction and validation agent"
+requires-python = ">=3.12"
+dependencies = [
+    "langgraph",
+    "langchain-core",
+    "langchain-openai",
+    "pydantic",
+    "python-dotenv",
+]
+
+[dependency-groups]
+dev = [
+    "cryptography<48",
+    "langgraph-cli[inmem]",
+    "pytest",
+    "pytest-asyncio",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+asyncio_mode = "auto"
