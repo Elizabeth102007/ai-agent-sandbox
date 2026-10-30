@@ -1,10 +1,10 @@
 
-
+from functools import lru_cache
 from typing import Annotated, Optional
 from typing_extensions import TypedDict
 from operator import add
 
-from dotenv import load_dotenv
+
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_openai import ChatOpenAI
 from langgraph.graph import StateGraph, START, END
@@ -16,7 +16,7 @@ from openai import APIConnectionError, APITimeoutError, APIStatusError
 from langchain_core.exceptions import OutputParserException
 from pydantic import ValidationError
 
-load_dotenv()
+
 
 
 class State(TypedDict):
@@ -47,16 +47,20 @@ Rules:
 """
 
 
-_model = ChatOpenAI(
-    model="gpt-5-nano",
-    max_retries=0,
-)
+@lru_cache(maxsize=1)
+def get_structured_model():
+    """Create and cache the structured invoice extraction model."""
+    model = ChatOpenAI(
+        model="gpt-5-nano",
+        max_retries=0,
+    )
 
-_structured_model = _model.with_structured_output(
-    ExtractedInvoice,
-    method="json_schema",
-    strict=False,
-)
+    structured_model = model.with_structured_output(
+        ExtractedInvoice,
+        method="json_schema",
+        strict=False,
+    )
+    return structured_model
 
 
 async def extract_invoice(
@@ -84,9 +88,9 @@ async def extract_invoice(
             )
         ),
     ]
-
-    result = await _structured_model.ainvoke(messages)
-
+    structured_model = get_structured_model()
+    result = await structured_model.ainvoke(messages)
+    
     if not isinstance(result, ExtractedInvoice):
         raise TypeError(
             "Structured extraction did not return an ExtractedInvoice; "
@@ -116,9 +120,7 @@ async def extract_fields(state: State) -> dict:
     except (OutputParserException, ValidationError) as exc:
         error = f"Could not parse structured invoice output: {exc}"
 
-    except Exception as exc:
-        error = f"Unexpected extraction failure ({type(exc).__name__}): {exc}"
-
+   
     else:
        return {
         "invoice": invoice,

@@ -210,36 +210,6 @@ async def test_repeated_extraction_failures_end_in_review(monkeypatch):
 
 
 @pytest.mark.asyncio
-async def test_unexpected_extraction_error_is_recorded_and_retried(
-    monkeypatch,
-):
-    calls = 0
-
-    async def fake_extract_invoice(raw_text, previous_errors):
-        nonlocal calls
-        calls += 1
-        raise RuntimeError("Unexpected test failure")
-
-    monkeypatch.setattr(
-        graph_module, "extract_invoice", fake_extract_invoice
-    )
-
-    graph = graph_module.build_graph()
-    final_state = await graph.ainvoke(make_initial_state())
-
-    result = final_state["result"]
-
-    assert result.status == "needs_review"
-    assert result.attempts == MAX_ATTEMPTS
-    assert calls == MAX_ATTEMPTS
-    assert any(
-        "RuntimeError" in error
-        and "Unexpected test failure" in error
-        for error in result.errors
-    )
-
-
-@pytest.mark.asyncio
 async def test_validation_exception_propagates(monkeypatch):
     async def fake_extract_invoice(raw_text, previous_errors):
         return make_valid_invoice()

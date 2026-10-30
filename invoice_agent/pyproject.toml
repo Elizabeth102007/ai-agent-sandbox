@@ -10,6 +10,7 @@ dependencies = [
     "langchain-openai",
     "pydantic",
     "python-dotenv",
+    "openai"
 ]
 
 [dependency-groups]
@@ -18,6 +19,7 @@ dev = [
     "langgraph-cli[inmem]",
     "pytest",
     "pytest-asyncio",
+    "httpx"
 ]
 
 [tool.pytest.ini_options]

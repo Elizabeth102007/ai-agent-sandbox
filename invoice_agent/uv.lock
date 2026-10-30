@@ -647,6 +647,7 @@ dependencies = [
     { name = "langchain-core" },
     { name = "langchain-openai" },
     { name = "langgraph" },
+    { name = "openai" },
     { name = "pydantic" },
     { name = "python-dotenv" },
 ]
@@ -654,6 +655,7 @@ dependencies = [
 [package.dev-dependencies]
 dev = [
     { name = "cryptography" },
+    { name = "httpx" },
     { name = "langgraph-cli", extra = ["inmem"] },
     { name = "pytest" },
     { name = "pytest-asyncio" },
@@ -664,6 +666,7 @@ requires-dist = [
     { name = "langchain-core" },
     { name = "langchain-openai" },
     { name = "langgraph" },
+    { name = "openai" },
     { name = "pydantic" },
     { name = "python-dotenv" },
 ]
@@ -671,6 +674,7 @@ requires-dist = [
 [package.metadata.requires-dev]
 dev = [
     { name = "cryptography", specifier = "<48" },
+    { name = "httpx" },
     { name = "langgraph-cli", extras = ["inmem"] },
     { name = "pytest" },
     { name = "pytest-asyncio" },

@@ -1,14 +1,15 @@
 
-
+from dotenv import load_dotenv
 import argparse
 import asyncio
 import json
 from pathlib import Path
 
-from graph import build_graph
+from studio.graph import build_graph
 
 
 async def main() -> None:
+    load_dotenv()
     parser = argparse.ArgumentParser(
         description="Extract and validate an invoice."
     )
